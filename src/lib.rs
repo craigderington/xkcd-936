@@ -13,7 +13,7 @@
 //! random_word = { version = "0.5.0", features = ["en"] }
 //! ```
 //!
-//! **Supported Languages:**
+//! **Supported Languages**
 //! - English
 //! - Spanish
 //! - German
@@ -23,9 +23,12 @@
 //! - Chinese
 //!
 
+#[allow(unused_imports)]
+#[allow(unused_macros)]
+#[allow(unused_variables)]
 mod words;
 
-use rand::{seq::SliceRandom, thread_rng};
+use rand::{prelude::IndexedRandom, rng};
 
 /// ISO 639-1 language codes.
 ///
@@ -86,7 +89,7 @@ pub fn all(lang: Lang) -> &'static [&'static str] {
 #[inline(always)]
 pub fn get(lang: Lang) -> &'static str {
     words::get(lang)
-        .choose(&mut thread_rng())
+        .choose(&mut rng())
         .expect("array is empty")
 }
 
@@ -114,7 +117,7 @@ pub fn all_len(len: usize, lang: Lang) -> Option<&'static [&'static str]> {
 #[inline(always)]
 pub fn get_len(len: usize, lang: Lang) -> Option<&'static str> {
     words::get_len(len, lang)?
-        .choose(&mut thread_rng())
+        .choose(&mut rng())
         .copied()
 }
 
@@ -142,6 +145,6 @@ pub fn all_starts_with(char: char, lang: Lang) -> Option<&'static [&'static str]
 #[inline(always)]
 pub fn get_starts_with(char: char, lang: Lang) -> Option<&'static str> {
     words::get_starts_with(char, lang)?
-        .choose(&mut thread_rng())
+        .choose(&mut rng())
         .copied()
 }
