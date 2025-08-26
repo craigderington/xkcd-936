@@ -10,7 +10,7 @@
 //! Example for English in Cargo.toml:
 //! ```toml
 //! [dependencies]
-//! random_word = { version = "0.5.0", features = ["en"] }
+//! random_word = { version = "0.5.2", features = ["en"] }
 //! ```
 //!
 //! **Supported Languages**
@@ -28,42 +28,13 @@
 #[allow(unused_variables)]
 mod words;
 
+#[allow(unused)]
+mod tests;
+
+pub use words::Lang;
+
 use rand::{prelude::IndexedRandom, rng};
 
-/// ISO 639-1 language codes.
-///
-/// Each variant corresponds to a
-/// set of words included in the binary.
-///
-/// You **MUST** enable the corresponding crate feature.
-///
-/// # Variants
-///
-/// * `De` - German. Requires enabling "de" feature.
-/// * `En` - English. Requires enabling "en" feature.
-/// * `Es` - Spanish. Requires enabling "es" feature.
-/// * `Fr` - French. Requires enabling "fr" feature.
-/// * `Ja` - Japanese. Requires enabling "ja" feature.
-/// * `Ru` - Russian. Requires enabling "ru" feature.
-/// * `Zh` - Chinese. Requires enabling "zh" feature.
-///
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub enum Lang {
-    #[cfg(feature = "de")]
-    De,
-    #[cfg(feature = "en")]
-    En,
-    #[cfg(feature = "es")]
-    Es,
-    #[cfg(feature = "fr")]
-    Fr,
-    #[cfg(feature = "ja")]
-    Ja,
-    #[cfg(feature = "ru")]
-    Ru,
-    #[cfg(feature = "zh")]
-    Zh,
-}
 
 /// Returns all words with the given language.
 ///
