@@ -26,10 +26,15 @@ exclude = [
 
 readme = "README.md"
 
+[[bin]]
+name = "passgen"
+path = "src/main.rs"
+
 [package.metadata.docs.rs]
 no-default-features = true
 
 [features]
+default = ["en"]
 de = []
 en = []
 es = []
